@@ -1,7 +1,8 @@
 #!/bin/bash
 
-data=$(cat test.txt)
-LINES=$(cat test.txt)
+initPath=$(pwd)
+
+mkdir -p data
 
 while read line; do
     echo "=== $line"
@@ -35,7 +36,7 @@ while read line; do
     fi
 done < input.txt
 
-cd "/home/al/aoc-2022/day7"
+cd "$initPath"
 echo -n "Part1:      " 
 find data -type d -exec sh -c "ls -goR {} | awk '/^-/{sum += \$3} END{print sum}' " \; | awk '$1<=100000{sum += $1} END{print sum}'
 
